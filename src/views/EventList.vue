@@ -28,7 +28,6 @@
 // @ is an alias to /src
 import EventCard from '@/components/EventCard.vue'
 import EventService from '@/services/EventService.js'
-import { watchEffect } from '@vue/runtime-core'
 // import axios from 'axios'
 
 export default {
@@ -72,18 +71,7 @@ export default {
 
 
   },
-  created() {
-    watchEffect(() => {
-      EventService.getEvents(2, this.page)
-        .then((response) => {
-          this.events = response.data
-          this.totalEvents = response.headers['x-total-count'] // <--- Store it
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    })
-  },
+  
   computed: {
     hasNextPage() {
       // First, calculate total pages
